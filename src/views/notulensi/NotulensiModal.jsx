@@ -33,13 +33,14 @@ const NotulensiModal = (props) => {
  
   const validate = (values) => {
     const errors = {};
-    values.judulNotul || (errors.judulNotul = "Required");
-    values.tempat || (errors.tempat = "Required");
-    values.tanggal || (errors.tanggal = "Required");
-    values.deskripsi || (errors.deskripsi = "Required");
-    values.saran || (errors.saran = "Required");
-    values.link || (errors.link = "Required");
-    values.status || (errors.status = "Required");
+    values.judulNotul || (errors.judulNotul = "Wajib diisi");
+    values.tempat || (errors.tempat = "Wajib diisi");
+    values.tanggal || (errors.tanggal = "Wajib diisi");
+    values.deskripsi || (errors.deskripsi = "Wajib diisi");
+    values.saran || (errors.saran = "Wajib diisi");
+    values.kendala || (errors.kendala = "Wajib diisi");
+    values.link || (errors.link = "Wajib diisi");
+    values.status || (errors.status = "Wajib diisi");
     return errors;
   };
   const formik = useFormik({

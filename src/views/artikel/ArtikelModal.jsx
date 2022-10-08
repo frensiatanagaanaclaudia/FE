@@ -8,7 +8,7 @@ import {
   CLabel,
   CInput,
   CFormText,
-  CModal, 
+  CModal,
   CModalHeader,
   CModalBody,
   CModalFooter,
@@ -20,58 +20,57 @@ import { useFormik } from "formik";
 // import { useHistory } from "react-router-dom";
 const ArtikelModal = (props) => {
   const [mess, setMess] = useState("");
-  const rowData= props.rowData;
-  const [imageUrl,setImageUrl]=useState([]);
+  const rowData = props.rowData;
+  const [imageUrl, setImageUrl] = useState([]);
   // eslint-disable-next-line
   // const history ={useHistory}
   const handleShowModal = () => {
     setMess("");
     props.handleShowModal();
-    setImageUrl("")
-    if(document.getElementById("imageUrl")){
-      document.getElementById("imageUrl").value ="";
+    setImageUrl("");
+    if (document.getElementById("imageUrl")) {
+      document.getElementById("imageUrl").value = "";
     }
   };
-
   const handleRefresh = () => {
-   props.handleRefresh();
+    props.handleRefresh();
   };
- 
+
   const validate = (values) => {
     const errors = {};
-    values.judulNotul || (errors.judulNotul = "Required");
-    // values.tempat || (errors.tempat = "Required");
-    // values.tanggal || (errors.tanggal = "Required");
-    // values.deskripsi || (errors.deskripsi = "Required");
-    // values.saran || (errors.saran = "Required");
-    // values.link || (errors.link = "Required");
-    // values.status || (errors.status = "Required");
+
+    values.judulArtikel || (errors.judulArtikel = "Wajib diisi");
+    values.hastag || (errors.hastag = "Wajib diisi");
+    values.tanggal || (errors.tanggal = "Wajib diisi");
+    values.periode || (errors.periode = "Wajib diisi");
+    values.keterangan || (errors.keterangan = "Wajib diisi");
+    values.status || (errors.status = "Wajib diisi");
     return errors;
   };
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      judulNotul: rowData.judulNotul || "", //edit
-      tempat: rowData.tempat || "", //edit //tambhin
+      judulArtikel: rowData.judulArtikel || "", //edit
+      hastag: rowData.hastag || "", //edit //tambhin
       tanggal: rowData.tanggal || "", //edit //tambhin
-      deskripsi: rowData.deskripsi || "", //edit //tambhin
-      saran: rowData.saran || "", //edit //tambhin
-      link: rowData.link || "", //edit //tambhin
+      periode: rowData.periode || "", //edit //tambhin
+      keterangan: rowData.keterangan || "", //edit //tambhin
       status: rowData.status || "", //edit //tambhin
       imageUrl: rowData.imageUrl || "", //edit //tambhin
     },
     validate,
     onSubmit: (values) => {
       const params = new FormData();
-      params.append("judulNotul",values.judulNotul);
-      params.append("tempat",values.tempat);
-      params.append("tanggal",values.tanggal);
-      params.append("deskripsi",values.deskripsi);
-      params.append("link",values.link);
-      params.append("status",values.status);
-      if(imageUrl.length !== 0){
-        params.append("imageUrl",imageUrl);
-      console.log(imageUrl);
+      params.append("judulArtikel", values.judulArtikel);
+      params.append("hastag", values.hastag);
+      params.append("tanggal", values.tanggal);
+      params.append("periode", values.periode);
+      params.append("keterangan", values.keterangan);
+      params.append("status", values.status);
+
+      if (imageUrl.length !== 0) {
+        params.append("image", imageUrl);
+        console.log(imageUrl);
       }
       save_data(params);
     },
@@ -81,20 +80,17 @@ const ArtikelModal = (props) => {
     try {
       let response = null;
       if (props.rowID === 0) {
-        response = await axios.post(`/artikel/create`, values, {
-          headers : { 
+        response = await axios.post("/artikel/create", values, {
+          headers: {
             Authorization: "Bearer" + token,
-          headers:{"content-type":"multipart/form-data" },
-        },
+            headers: { enctype: "multipart/form-data" },
+          },
         });
       } else {
-        response = await axios.patch(
-          `/artikel/update/${props.rowID}`,
-          values,
-          {
-            headers: {
-               Authorization: "Bearer" + token,
-            headers:{"content-type":"multipart/form-data"},
+        response = await axios.patch(`/artikel/update/${props.rowID}`, values, {
+          headers: {
+            Authorization: "Bearer" + token,
+            headers: { enctype: "multipart/form-data" },
           },
         });
       }
@@ -103,10 +99,9 @@ const ArtikelModal = (props) => {
         handleShowModal();
         swal("success", "Artikel berhasil disimpan", "success");
       }
-    } catch (err) { 
+    } catch (err) {
       console.log(err.response.data);
       setMess(err.response.data.message);
-
     }
   }
   return (
@@ -119,36 +114,48 @@ const ArtikelModal = (props) => {
               <CCol sm="12">
                 <CForm onSubmit={formik.handleSubmit}>
                   <CFormGroup>
-                    <CLabel htmlFor="judulNotul">Judul Artikel</CLabel>
+                    <CLabel htmlFor="judulArtikel">Judul Artikel</CLabel>
                     <CInput
-                      name="judulNotul"
-                      id="judulNotul"
+                      name="judulArtikel"
+                      id="judulArtikel"
                       placeholder="Judul Artikel"
-                      value={formik.values.judulNotul}
+                      value={formik.values.judulArtikel}
                       onChange={formik.handleChange}
                     />
                     <p className="text-warning field_validate_label">
-                      {formik.errors.judulNotul
-                        ? formik.errors.judulNotul
+                      {formik.errors.judulArtikel
+                        ? formik.errors.judulArtikel
                         : null}
                     </p>
-                    <CLabel htmlFor="tempat">Tempat</CLabel>
+
+                    <CLabel htmlFor="hastag">hastag</CLabel>
                     <CInput
-                      name="tempat"
-                      id="tempat"
-                      placeholder="Tempat"
-                      value={formik.values.tempat}
+                      name="hastag"
+                      id="hastag"
+                      placeholder="hastag"
+                      value={formik.values.hastag}
                       onChange={formik.handleChange}
                     />
                     <p className="text-warning field_validate_label">
-                      {formik.errors.tempat ? formik.errors.tempat : null}
+                      {formik.errors.hastag ? formik.errors.hastag : null}
                     </p>
 
+                    <CLabel htmlFor="periode">Periode</CLabel>
+                    <CInput
+                      name="periode"
+                      id="periode"
+                      placeholder="periode"
+                      value={formik.values.periode}
+                      onChange={formik.handleChange}
+                    />
+                    <p className="text-warning field_validate_label">
+                      {formik.errors.periode ? formik.errors.periode : null}
+                    </p>
                     <CLabel htmlFor="tanggal">Tanggal</CLabel>
                     <CInput
                       name="tanggal"
                       id="tanggal"
-                      placeholder="Tanggal"
+                      placeholder="tanggal"
                       value={formik.values.tanggal}
                       onChange={formik.handleChange}
                     />
@@ -156,68 +163,32 @@ const ArtikelModal = (props) => {
                       {formik.errors.tanggal ? formik.errors.tanggal : null}
                     </p>
 
-                    <CLabel htmlFor="deskripsi">Deskripsi</CLabel>
+                    <CLabel htmlFor="keterangan">Keterangan</CLabel>
                     <CInput
-                      name="deskripsi"
-                      id="deskripsi"
+                      name="keterangan"
+                      id="keterangan"
                       placeholder="Deskripsi"
-                      value={formik.values.deskripsi}
+                      value={formik.values.keterangan}
                       onChange={formik.handleChange}
                     />
                     <p className="text-warning field_validate_label">
-                      {formik.errors.deskripsi ? formik.errors.deskripsi : null}
+                      {formik.errors.keterangan
+                        ? formik.errors.keterangan
+                        : null}
                     </p>
 
-                    <CLabel htmlFor="image">Gambar</CLabel>
+                    <CLabel htmlFor="imageUrl">Gambar</CLabel>
                     <CInput
-                    accept="image/**"
-                      name="image"
-                      id="image"
+                      accept="image/**"
+                      name="imageUrl"
+                      id="imageUrl"
                       type="file"
-                      onChange={(event)=>{
-                      
-                        setImageUrl(event.target.files[0])
+                      onChange={(event) => {
+                        setImageUrl(event.target.files[0]);
                       }}
                     />
                     <p className="text-warning field_validate_label">
-                      {formik.errors.image ? formik.errors.image : null}
-                    </p>
-
-
-                    <CLabel htmlFor="saran">Saran</CLabel>
-                    <CInput
-                      name="saran"
-                      id="saran"
-                      placeholder="Saran"
-                      value={formik.values.saran}
-                      onChange={formik.handleChange}
-                    />
-                    <p className="text-warning field_validate_label">
-                      {formik.errors.saran ? formik.errors.saran : null}
-                    </p>
-
-                    <CLabel htmlFor="kendala">Kendala</CLabel>
-                    <CInput
-                      name="kendala"
-                      id="kendala"
-                      placeholder="Kendala"
-                      value={formik.values.kendala}
-                      onChange={formik.handleChange}
-                    />
-                    <p className="text-warning field_validate_label">
-                      {formik.errors.kendala ? formik.errors.kendala : null}
-                    </p>
-
-                    <CLabel htmlFor="link">Link</CLabel>
-                    <CInput
-                      name="link"
-                      id="link"
-                      placeholder="Link"
-                      value={formik.values.link}
-                      onChange={formik.handleChange}
-                    />
-                    <p className="text-warning field_validate_label">
-                      {formik.errors.link ? formik.errors.link : null}
+                      {formik.errors.imageUrl ? formik.errors.imageUrl : null}
                     </p>
 
                     <CLabel htmlFor="status">Status</CLabel>

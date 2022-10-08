@@ -24,14 +24,16 @@ const Artikel = () => {
   const history = useHistory();
 
   const fields = [
+   
+        
+       
     "judulArtikel",
     "hastag",
     "periode",
     "tanggal",
-    "logo",
     "status",
-    "Logo",
     "keterangan",
+    "Logo",
     "Actions"
   ];
   const ForceRedirect = () => {
@@ -113,7 +115,7 @@ const Artikel = () => {
                   return (
                     <td className="py-2">
                       <CButton
-                        onClick={(e) => {
+                        onClick= {(e) => {
                           handleAction(item._id, item);
                         }}
                         size="sm"
