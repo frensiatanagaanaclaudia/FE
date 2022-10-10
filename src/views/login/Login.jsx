@@ -18,6 +18,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import swal from "sweetalert";
 import { useFormik} from "formik";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [message,setMessage] = useState("");
@@ -88,6 +89,7 @@ if(localStorage.getItem("user_info"))
 })
      return (
     <div className="c-app c-default-layout flex-row align-items-center">
+      <ToastContainer></ToastContainer>
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">

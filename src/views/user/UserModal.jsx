@@ -143,6 +143,7 @@ const UserModal = (props) => {
                       id="password"
                       type="password"
                       placeholder="Password"
+                      autoComplete="off"
                       value={formik.values.password}
                       onChange={formik.handleChange}
                     />
@@ -156,6 +157,7 @@ const UserModal = (props) => {
                       id="passwordConfirm"
                       type="password"
                       placeholder="Password Confirm"
+                      autoComplete="off"
                       value={formik.values.passwordConfirm}
                       onChange={formik.handleChange}
                     />

@@ -35,7 +35,7 @@ const Notulensi = () => {
     "Actions",
   ];
   const ForceRedirect = () => {
-    history.push("/admin/login"); //awal dashboard
+    history.push("/admin/login");
     localStorage.clear()
   };
   function handleRefresh() {

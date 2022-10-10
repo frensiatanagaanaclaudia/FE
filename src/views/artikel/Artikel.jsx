@@ -37,7 +37,7 @@ const Artikel = () => {
     "Actions"
   ];
   const ForceRedirect = () => {
-    history.push("/admin/dashboard"); 
+    history.push("/admin/login"); 
     localStorage.clear()
   };
   function handleRefresh() {

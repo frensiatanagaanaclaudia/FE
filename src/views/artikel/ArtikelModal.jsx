@@ -100,7 +100,6 @@ const ArtikelModal = (props) => {
         swal("success", "Artikel berhasil disimpan", "success");
       }
     } catch (err) {
-      console.log(err.response.data);
       setMess(err.response.data.message);
     }
   }

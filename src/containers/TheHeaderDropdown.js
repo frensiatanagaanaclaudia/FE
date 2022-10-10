@@ -54,13 +54,13 @@ const TheHeaderDropdown = () => {
         <CDropdownItem header tag="div" color="light" className="text-center">
           <strong>Account</strong>
         </CDropdownItem>
-        <CDropdownItem onClick ={logout}>
+        {/* <CDropdownItem onClick ={logout}>
           <CIcon name="cil-user-unfollow" className="mfe-2" />
           Log Out
-        </CDropdownItem>
+        </CDropdownItem> */}
         <CDropdownItem onClick = {logoutAll}>
           <CIcon name="cil-user-unfollow" className="mfe-2" />
-          Log Out All Devices
+          Log Out 
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
