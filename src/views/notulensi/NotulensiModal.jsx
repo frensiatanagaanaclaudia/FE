@@ -188,7 +188,6 @@ const NotulensiModal = (props) => {
                       aria-label="Default select example"
                       onChange={formik.handleChange}
                     >
-                      
                       <option value="berjalan">berjalan</option>
                       <option value="selesai">selesai</option>
                       <option value="gagal">gagal</option>

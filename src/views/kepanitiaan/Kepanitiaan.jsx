@@ -4,8 +4,10 @@ import {
     CCol,
     CRow,
     CCard,
+    
     CButton,  
-    CDataTable
+    CDataTable,
+    CBadge
   } from "@coreui/react";
   import { useState , useEffect} from "react";
   import axios from "../../service/api";
@@ -74,6 +76,17 @@ import {
       getData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status]);
+    const getBadge = (status) => {
+      switch (status) {
+        case "selesai":
+          return "success";
+        case "gagal":
+          return "danger";
+        default:
+          return "primary";
+      }
+    };
+  
     return (
       <CRow>
         <CCol sm="12">
@@ -108,6 +121,15 @@ import {
                 sorter
                 pagination
                 scopedSlots={{
+                  status: (item) => {
+                    return (
+                      <td>
+                        <CBadge color={getBadge(item.status)}>
+                          {item.status}
+                        </CBadge>
+                      </td>
+                    );
+                  },
                   Actions: (item) => {
                     return (
                       <td className="py-2">

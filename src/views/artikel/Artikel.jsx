@@ -5,7 +5,8 @@ import {
   CRow,
   CCard,
   CButton,  
-  CDataTable
+  CDataTable,
+  CBadge
 } from "@coreui/react";
 import { useState , useEffect} from "react";
 import axios from "../../service/api";
@@ -23,10 +24,7 @@ const Artikel = () => {
   const [rowData, setRowData] = useState([]);
   const history = useHistory();
 
-  const fields = [
-   
-        
-       
+  const fields = [   
     "judulArtikel",
     "hastag",
     "periode",
@@ -71,6 +69,18 @@ const Artikel = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  const getBadge = (status) => {
+    switch (status) {
+      case "selesai":
+        return "success";
+      case "gagal":
+        return "danger";
+      default:
+        return "primary";
+    }
+  };
+
   return (
     <CRow>
       <CCol sm="12">
@@ -105,6 +115,16 @@ const Artikel = () => {
               sorter
               pagination
               scopedSlots={{
+                status: (item) => {
+                  return (
+                    <td>
+                      <CBadge color={getBadge(item.status)}>
+                        {item.status}
+                      </CBadge>
+                    </td>
+                  );
+                },
+
                 Logo:(item)=>( 
                 <td className="py-2">
                   <div>

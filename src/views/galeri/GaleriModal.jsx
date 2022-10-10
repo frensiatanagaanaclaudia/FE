@@ -1,7 +1,7 @@
 import {
     CCol,
     CRow,
-    CButton,
+    CButton,CSelect,
     CContainer,
     CForm,
     CFormGroup,
@@ -209,13 +209,17 @@ import {
                         {formik.errors.link ? formik.errors.link : null}
                       </p>
                       <CLabel htmlFor="status">Status</CLabel>
-                      <CInput
-                        name="status"
-                        id="status"
-                        placeholder="Status"
-                        value={formik.values.status}
-                        onChange={formik.handleChange}
-                      />
+                      <CSelect
+                      name="status"
+                      id="status"
+                      aria-label="Default select example"
+                      onChange={formik.handleChange}
+                    >
+                      <option value="berjalan">berjalan</option>
+                      <option value="selesai">selesai</option>
+                      <option value="gagal">gagal</option>
+                    </CSelect>
+                     /
                       <p className="text-warning field_validate_label">
                         {formik.errors.status ? formik.errors.status : null}
                       </p>
