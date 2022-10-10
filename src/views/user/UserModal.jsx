@@ -79,7 +79,7 @@ const UserModal = (props) => {
           }
         );
       }
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200 ) {
         handleRefresh();
         handleShowModal();
         swal("success", "User berhasil disimpan", "success");
