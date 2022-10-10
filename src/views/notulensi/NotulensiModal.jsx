@@ -8,10 +8,11 @@ import {
   CLabel,
   CInput,
   CFormText,
-  CModal, 
+  CModal,
   CModalHeader,
   CModalBody,
   CModalFooter,
+  CSelect,
 } from "@coreui/react";
 import { useState } from "react";
 import axios from "../../service/api";
@@ -28,9 +29,9 @@ const NotulensiModal = (props) => {
   };
 
   const handleRefresh = () => {
-   props.handleRefresh();
+    props.handleRefresh();
   };
- 
+
   const validate = (values) => {
     const errors = {};
     values.judulNotul || (errors.judulNotul = "Wajib diisi");
@@ -65,7 +66,7 @@ const NotulensiModal = (props) => {
       let response = null;
       if (props.rowID === 0) {
         response = await axios.post("/notulensi/create", values, {
-          headers : { Authorization: "Bearer" + token ,},
+          headers: { Authorization: "Bearer" + token },
         });
       } else {
         response = await axios.patch(
@@ -81,7 +82,7 @@ const NotulensiModal = (props) => {
         handleShowModal();
         swal("success", "Notulensi berhasil disimpan", "success");
       }
-    } catch (err) { 
+    } catch (err) {
       setMess(err.response.data.message);
     }
   }
@@ -181,13 +182,24 @@ const NotulensiModal = (props) => {
                     </p>
 
                     <CLabel htmlFor="status">Status</CLabel>
-                    <CInput
+                    <CSelect
+                      name="status"
+                      id="status"
+                      aria-label="Default select example"
+                      onChange={formik.handleChange}
+                    >
+                      
+                      <option value="berjalan">berjalan</option>
+                      <option value="selesai">selesai</option>
+                      <option value="gagal">gagal</option>
+                    </CSelect>
+                    {/* <CInput
                       name="status"
                       id="status"
                       placeholder="Status"
                       value={formik.values.status}
                       onChange={formik.handleChange}
-                    />
+                    /> */}
                     <p className="text-warning field_validate_label">
                       {formik.errors.status ? formik.errors.status : null}
                     </p>

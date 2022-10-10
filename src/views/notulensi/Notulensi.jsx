@@ -4,10 +4,11 @@ import {
   CCol,
   CRow,
   CCard,
-  CButton,  
-  CDataTable
+  CButton,
+  CDataTable,
+  CBadge,
 } from "@coreui/react";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "../../service/api";
 import { useHistory } from "react-router-dom";
 import CIcon from "@coreui/icons-react";
@@ -36,7 +37,7 @@ const Notulensi = () => {
   ];
   const ForceRedirect = () => {
     history.push("/admin/login");
-    localStorage.clear()
+    localStorage.clear();
   };
   function handleRefresh() {
     setStatus(status + 1);
@@ -49,7 +50,7 @@ const Notulensi = () => {
   function handleShowModal() {
     setShowModal(!showModal);
   }
-  
+
   //fetch api
   useEffect(() => {
     async function getData() {
@@ -63,13 +64,25 @@ const Notulensi = () => {
       } catch (err) {
         if (err.response.status === 403) {
           ForceRedirect();
-          console.log(err.response.data)
+          console.log(err.response.data);
         }
       }
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  const getBadge = (status) => {
+    switch (status) {
+      case "selesai":
+        return "success";
+      case "gagal":
+        return "danger";
+      default:
+        return "primary";
+    }
+  };
+
   return (
     <CRow>
       <CCol sm="12">
@@ -104,6 +117,16 @@ const Notulensi = () => {
               sorter
               pagination
               scopedSlots={{
+                status: (item) => {
+                  return (
+                    <td>
+                      <CBadge color={getBadge(item.status)}>
+                        {item.status}
+                      </CBadge>
+                    </td>
+                  );
+                },
+
                 Actions: (item) => {
                   return (
                     <td className="py-2">
