@@ -21,8 +21,8 @@ import React, { useState } from "react";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div style={{marginBottom:"20px"}} >
-      <CNavbar expandable="sm" color="info">
+    <header style={{marginBottom:"90px"}} >
+      <CNavbar expandable="sm" color="info" className="fixed-top">
         <CToggler inNavbar onClick={() => setIsOpen(!isOpen)} />
         {/* <CNavbarBrand>
           UKM PMK ITB STIKOM BALI</CNavbarBrand> */}
@@ -51,6 +51,6 @@ export default function Header() {
           </CNavbarNav> */}
         </CCollapse>
       </CNavbar>
-    </div>
+    </header>
   );
 }
