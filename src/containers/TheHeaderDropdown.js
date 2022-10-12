@@ -15,19 +15,19 @@ const TheHeaderDropdown = () => {
   //biar jadi json
   const user_info = JSON.parse(localStorage.getItem("user_info"));
   const token = JSON.parse(localStorage.getItem("token"));
-  async function logout() {
-    try {
-     if(token){ 
-      const response = await axios.post("/user/logout", null, {
-        headers: { Authorization: "Bearer" + token },
-      });
-      swal(response.data.message)}
-      localStorage.clear();
-      history.push("/admin/login");
-    } catch (err) {
-        localStorage.clear();
-    }
-  }
+  // async function logout() {
+  //   try {
+  //    if(token){ 
+  //     const response = await axios.post("/user/logout", null, {
+  //       headers: { Authorization: "Bearer" + token },
+  //     });
+  //     swal(response.data.message)}
+  //     localStorage.clear();
+  //     history.push("/admin/login");
+  //   } catch (err) {
+  //       localStorage.clear();
+  //   }
+  // }
   async function logoutAll() {
     try {
       if(token){ 
