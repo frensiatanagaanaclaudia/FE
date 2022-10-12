@@ -1,19 +1,27 @@
-import React from 'react'
+import React from "react";
 import Carousel from "react-multi-carousel";
-import { Galeriresponsive } from "../../service/responsive";
-
-import Fade from 'react-reveal/Fade';
-
-const GaleriCarousel=({deviceType}) =>{
+import { GaleriResponsive } from "../../service/responsive";
+import Fade from "react-reveal/Fade";
+import { CCard } from "@coreui/react";
+const GaleriCarousel = ({ deviceType, items }) => {
+  console.log(items);
   return (
-    <Fade left>
-        <Carousel responsive={Galeriresponsive} deviceType={deviceType}>
-    <div>Item 1</div>
-    <div>Item 2</div>
-    <div>Item 3</div>
-    <div>Item 4</div>
-  </Carousel>
-  </Fade> 
-  )
-}
-export default  GaleriCarousel;
+    <>
+      {!items ? (
+        <h1>Loading</h1>
+      ) : (
+        <Fade left>
+          <Carousel responsive={GaleriResponsive} deviceType={deviceType}>
+            {items.map((item) => (
+              <div key={item._id}>
+                <CCard>{item.judulKegiatan}</CCard>
+              </div>
+            ))}
+          </Carousel>
+        </Fade>
+      )}
+    </>
+  );
+};
+
+export default GaleriCarousel;

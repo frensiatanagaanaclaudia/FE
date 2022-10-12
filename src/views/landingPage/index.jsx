@@ -1,7 +1,6 @@
-
 import { CSpinner } from "@coreui/react";
 import React, { useEffect, useState } from "react";
-import axios from "../../service/api"
+import axios from "../../service/api";
 import "react-multi-carousel/lib/styles.css";
 const LandingPage = () => {
   const Header = React.lazy(() => import("../component/Header"));
@@ -9,34 +8,36 @@ const LandingPage = () => {
   const Hero = React.lazy(() => import("./Hero"));
   const GaleriCarousel = React.lazy(() => import("./GaleriCarousel"));
   const ArtikelCarousel = React.lazy(() => import("./ArtikelCarousel"));
-  const [pageData,SetPageData]= useState([])
+  const [pageData, SetPageData] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     document.title = " UKM PMK || Home";
-    async function getData(){
-      try{
-        let {data}=await axios.get('/client')
-        SetPageData(data)
-        console.log(data)
-      }catch(err){
-        console.log(err.response.data)
+    async function getData() {
+      try {
+        let { data } = await axios.get("/client");
+        SetPageData(data);
+        console.log(pageData);
+        console.log(data);
+      } catch (err) {
+        console.log(err.response.data);
       }
     }
-    getData()
-  },[])
+    getData();
+  }, []);
   return (
     <>
       <Header></Header>
       {!pageData ? (
-  <CSpinner style={{width:'4rem',height:'4rem'}}
-  color="primary"
-  variant="grow"/>
-):<Hero
-// ={pageData.Galeri
-// }
-/>}<GaleriCarousel></GaleriCarousel>
-<ArtikelCarousel></ArtikelCarousel>
-      
+        <CSpinner
+          style={{ width: "4rem", height: "4rem" }}
+          color="primary"
+          variant="grow"
+        />
+      ) : (
+        <Hero />
+      )}
+      <GaleriCarousel items={pageData.Galeri}></GaleriCarousel> 
+      <ArtikelCarousel items={pageData.Artikel}></ArtikelCarousel>
       <Footer></Footer>
     </>
   );
