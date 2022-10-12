@@ -7,19 +7,15 @@ const ArtikelCarousel = ({ deviceType, items }) => {
   console.log(items);
   return (
     <>
-      {!items ? (
-        <h1>Loading</h1>
-      ) : (
-        <Fade left>
-          <Carousel responsive={ArtikelResponsive} deviceType={deviceType}>
-            {items.map((item) => (
-              <div key={item._id}>
-                <CCard> {item.judulKegiatan}</CCard>
-              </div>
-            ))}
-          </Carousel>
-        </Fade>
-      )}
+      <Fade left>
+        <Carousel responsive={ArtikelResponsive} deviceType={deviceType}>
+          {items?.map((item) => (
+            <div key={item._id}>
+              <CCard> {item.judulArtikel}{item.periode}{item.hastag}</CCard>
+            </div>
+          ))}
+        </Carousel>
+      </Fade>
     </>
   );
 };

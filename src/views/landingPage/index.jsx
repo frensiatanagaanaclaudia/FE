@@ -8,21 +8,33 @@ const LandingPage = () => {
   const Hero = React.lazy(() => import("./Hero"));
   const GaleriCarousel = React.lazy(() => import("./GaleriCarousel"));
   const ArtikelCarousel = React.lazy(() => import("./ArtikelCarousel"));
-  const [pageData, SetPageData] = useState({});
+  const [pageData, SetPageData] = useState([]);
+  const [pageDataGaleri, SetPageDataGaleri] = useState([]);
 
   useEffect(() => {
     document.title = " UKM PMK || Home";
     async function getData() {
       try {
-        let { data } = await axios.get("/client");
+        let { data } = await axios.get("/artikel/read");
         SetPageData(data);
-        console.log(pageData);
-        console.log(data);
+        // console.log(pageData)
+        // console.log(data);
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+    async function getDataGaleri() {
+      try {
+        let { data } = await axios.get("/galeri/read");
+        SetPageDataGaleri(data);
+        // console.log(data);
+        // console.log(pageDataGaleri);
       } catch (err) {
         console.log(err.response.data);
       }
     }
     getData();
+    getDataGaleri();
   }, []);
   return (
     <>
@@ -36,8 +48,10 @@ const LandingPage = () => {
       ) : (
         <Hero />
       )}
-      <GaleriCarousel items={pageData.Galeri}></GaleriCarousel> 
-      <ArtikelCarousel items={pageData.Artikel}></ArtikelCarousel>
+      <GaleriCarousel items={pageDataGaleri}></GaleriCarousel>
+      <div>
+        <ArtikelCarousel items={pageData}></ArtikelCarousel>
+      </div>
       <Footer></Footer>
     </>
   );
