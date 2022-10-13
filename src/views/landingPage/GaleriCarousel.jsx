@@ -53,7 +53,8 @@ const GaleriCarousel = ({ deviceType, items }) => {
                     </figure>
                   </CCardBody>
                   <CCardFooter className="mb-3">
-                    {/* <h5>Periode:{item.periode}</h5> */} 
+                    <figcaption>  <h5>Link:{item.link}</h5> </figcaption>
+                  
                     {/* <div className="col-11"> {item.keterangan}</div> */}
                   </CCardFooter>
                 </CCardHeader>

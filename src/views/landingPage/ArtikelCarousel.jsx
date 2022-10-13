@@ -4,6 +4,7 @@ import { ArtikelResponsive } from "../../service/responsive";
 import Fade from "react-reveal/Fade";
 import { CCardBody, CCardFooter, CCardHeader } from "@coreui/react";
 import { Link } from "react-router-dom";
+import TruncateText from '../../service/TruncateText'
 const ArtikelCarousel = ({ deviceType, items }) => {
   console.log(items);
   return (
@@ -31,13 +32,14 @@ const ArtikelCarousel = ({ deviceType, items }) => {
                       </Link>
                     </figure>
                   </CCardBody>
-                  <CCardFooter> 
-                    {/* <div className="col-10"> {item.keterangan}</div> */}
-                    <figcaption>
+                  <CCardFooter>  <figcaption>
                       Periode:{item.periode}
                       {" "}
                      
                     </figcaption>
+                    <TruncateText text={item.keterangan}/>
+                    {/* <div className="col-10"> {item.keterangan}</div> */}
+                   
                    </CCardFooter>
                 </CCardHeader>
               </div>
