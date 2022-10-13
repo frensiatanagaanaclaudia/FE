@@ -35,6 +35,8 @@ const GaleriCarousel = ({ deviceType, items }) => {
           <h1>Galeri</h1>
           <Carousel responsive={GaleriResponsive} deviceType={deviceType}>
             {items?.map((item) => (
+    
+
               <div key={item._id}>
                 <CCardHeader>
                   {" "}
@@ -50,8 +52,9 @@ const GaleriCarousel = ({ deviceType, items }) => {
                       ></img>
                     </figure>
                   </CCardBody>
-                  <CCardFooter>
-                    {/* <h5>Periode:{item.periode}</h5> */} {item.keterangan}
+                  <CCardFooter className="mb-3">
+                    {/* <h5>Periode:{item.periode}</h5> */} 
+                    {/* <div className="col-11"> {item.keterangan}</div> */}
                   </CCardFooter>
                 </CCardHeader>
               </div>

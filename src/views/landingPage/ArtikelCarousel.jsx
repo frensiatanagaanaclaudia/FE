@@ -3,14 +3,15 @@ import Carousel from "react-multi-carousel";
 import { ArtikelResponsive } from "../../service/responsive";
 import Fade from "react-reveal/Fade";
 import { CCardBody, CCardFooter, CCardHeader } from "@coreui/react";
+import { Link } from "react-router-dom";
 const ArtikelCarousel = ({ deviceType, items }) => {
   console.log(items);
   return (
     <>
       <section className="container">
-        <Fade left>
+        <Fade bottom>
           {" "}
-          <h1>Artikel</h1>
+          <h1 className="mt-4">Artikel</h1>
           <Carousel responsive={ArtikelResponsive} deviceType={deviceType}>
             {items?.map((item) => (
               <div key={item._id}>
@@ -21,14 +22,23 @@ const ArtikelCarousel = ({ deviceType, items }) => {
                       <strong>{item.judulArtikel}</strong>
                     </h4>
                     <figure>
-                      <img
-                        style={{ width: "100%" }}
-                        src={`https://ukmdb.herokuapp.com/` + item.imageUrl}
-                        alt="Galeri"
-                      ></img>
+                      <Link to="{/artikel}">
+                        <img
+                          style={{ width: "100%" }}
+                          src={`https://ukmdb.herokuapp.com/` + item.imageUrl}
+                          alt="Artikel"
+                        ></img>
+                      </Link>
                     </figure>
                   </CCardBody>
-                  <CCardFooter> {item.keterangan}</CCardFooter>
+                  <CCardFooter> 
+                    {/* <div className="col-10"> {item.keterangan}</div> */}
+                    <figcaption>
+                      Periode:{item.periode}
+                      {" "}
+                     
+                    </figcaption>
+                   </CCardFooter>
                 </CCardHeader>
               </div>
             ))}

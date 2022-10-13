@@ -6,19 +6,19 @@ const Hero = () => {
     <Fade top>
       <CJumbotron>
         <CRow>
-          <CCol>
+          <CCol className="col-12 col-sm-12 col-md-6 ">
             <h1 className="display-3">UKM PMK ITB STIKOM</h1>
-            <h5 className="lead"><strong>
+            <h5 className="lead mb-4" style={{ textAlign:"center" }}><strong>
               Unit Kegiatan Mahasiswa Persaudaraan Mahasiswa Kristen</strong>
             </h5>
             {" "}
-            <h1>VISI</h1>
-            <p>Menjadikan wadah atau organisasi berkumpulnya Mahasiswa Kristen
+            <h1 style={{ textAlign:"center" }}>VISI</h1>
+            <p style={{ textAlign:"center" }}>Menjadikan wadah atau organisasi berkumpulnya Mahasiswa Kristen
                 ITB STIKOM Bali untuk mewujudkan mahasiswa yang berbudi dan
                 menggenapi visi Allah di dunia.</p>
-            <h1>MISI</h1>
-            <ul>
-<li>Melakukan KTB (Kelompok Tumbuh Bersama) secara rutin </li> 
+            <h1 className="mt-4" style={{ textAlign:"center" }}>MISI</h1>
+            <ul className="mb-5" >
+<li >Melakukan KTB (Kelompok Tumbuh Bersama) secara rutin </li> 
 <li>Melakukan pendalaman Alkitab bersama</li>
 <li>Menjadi contoh dan teladan di kampus ITB STIKOM Bali</li>
 <li>Menjadikan anggota PMK saudara di dalam Tuhan</li>

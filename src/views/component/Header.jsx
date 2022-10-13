@@ -26,7 +26,7 @@ export default function Header() {
           <CNavbarNav>
             <CNavLink to="/">Home</CNavLink>
             <CNavLink to="/galeri">Galeri</CNavLink>
-            <CNavLink to="artikel">Artikel</CNavLink>
+            <CNavLink to="/artikel">Artikel</CNavLink>
           </CNavbarNav>
           <CNavbarNav className="ml-auto">
             {/* <CForm inline>
