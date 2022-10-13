@@ -6,10 +6,10 @@ export default function Footer() {
     <footer style={{ marginTop: "20px" }}>
       <div className="card p-5">
         <CRow className="d-none d-md-flex d-lg-flex d-xl-flex">
-          <CCol>
+          {/* <CCol>
             <h3>UKM PMK ITB STIKOM BALI</h3>
             <p>Unit Kegiatan Mahasiswa Persaudaraan Mahasiswa Kristen</p>
-          </CCol>
+          </CCol> */}
           <CCol>
             <h6>Konten</h6>
             <ul className="list-group list-group-flush">
@@ -26,15 +26,19 @@ export default function Footer() {
             <h6>More About PMK</h6>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
-                <CButton type="link" href="https://www.instagram.com/pmkstikombali/"></CButton>Instagram
+                <CButton
+                  type="link"
+                  href="https://www.instagram.com/pmkstikombali/"
+                ></CButton>
+                Instagram
               </li>
               <li className="list-group-item">
-                <CButton type="link" href="tel:+6285737439604"></CButton>WhatsApp
+                <CButton type="link" href="tel:+6285737439604"></CButton>
+                WhatsApp
               </li>
             </ul>
           </CCol>
 
-          
           <CRow>
             <div className="text-center col">
               CopyRight 2022 * All Rights Reversed * Frensia Tanaga Anaclaudia

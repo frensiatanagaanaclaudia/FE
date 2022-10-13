@@ -1,10 +1,7 @@
 import {
-  CButton,
   CCollapse,
   CDropdown,
-  CForm,
   CImg,
-  CInput,
   CNavbar,
   CNavbarNav,
   CNavLink,
@@ -24,7 +21,7 @@ export default function Header() {
         <CToggler inNavbar onClick={() => setIsOpen(!isOpen)} />
         {/* <CNavbarBrand>
           UKM PMK ITB STIKOM BALI</CNavbarBrand> */}
-        <CImg className="c-sidebar-brand-full" src={Logo} height={60} />
+        <CImg className="c-sidebar-brand-full" src={Logo} height={60}></CImg>
         <CCollapse show={isOpen} navbar>
           <CNavbarNav>
             <CNavLink to="/">Home</CNavLink>
@@ -32,12 +29,12 @@ export default function Header() {
             <CNavLink to="artikel">Artikel</CNavLink>
           </CNavbarNav>
           <CNavbarNav className="ml-auto">
-            <CForm inline>
+            {/* <CForm inline>
               <CInput className="mr-sm-2" placeholder="Search" size="sm" />
               <CButton color="light" className="my-2 my-sm-0" type="submit">
                 Search
               </CButton>
-            </CForm>
+            </CForm> */}
             <CDropdown inNav></CDropdown>
             <CDropdown inNav></CDropdown>
           </CNavbarNav>

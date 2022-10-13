@@ -62,14 +62,14 @@ const Dashboard = () => {
           </CWidgetIcon>
         </CCol>
         <CCol xs="12" sm="6" lg="3">
-          <CWidgetIcon
+          {/* <CWidgetIcon
             text="Kepanitiaan"
             header={data ? data.Kepanitiaan : 0}
             color="warning"
           >
             <CIcon width={24} name="cil-bell" />
           </CWidgetIcon>
-          
+           */}
         </CCol>
       </CRow>
       
